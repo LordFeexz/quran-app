@@ -6,6 +6,7 @@ import Footer from "./footer.astro";
 import { cn } from "@/lib/utils";
 import type { WithContext, Thing } from "schema-dts";
 import { Toaster } from "@/components/ui/sonner";
+import InstallPwaPrompt from "../common/install-pwa-prompt";
 
 export interface Props {
   title: string;
@@ -34,6 +35,16 @@ const {
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+    <meta name="apple-mobile-web-app-title" content="Quran, Hadith, Sirah" />
     <meta
       name="google-site-verification"
       content="yV4_49oVttwyR3x7vslJNmsMg6Ho4aFlcTqsvD6O8NA"
@@ -77,5 +88,14 @@ const {
       <Footer />
     </div>
     <Toaster client:only />
+    <InstallPwaPrompt client:only />
+    <script is:inline>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(() => console.log("Service Worker registered"))
+          .catch(console.error);
+      }
+    </script>
   </body>
 </html>
