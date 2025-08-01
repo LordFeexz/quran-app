@@ -38,7 +38,7 @@ function ThemeToggle() {
   return (
     <Button
       onClick={toggleTheme}
-      className="p-2 rounded-md hover:bg-accent transition-colors"
+      className="p-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors cursor-pointer"
       aria-label="Toggle theme"
     >
       <ThemeIcon theme={theme} />
