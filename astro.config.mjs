@@ -16,6 +16,10 @@ export default defineConfig({
     sitemap(),
     pwa({
       registerType: "autoUpdate",
+      includeAssets: ["favicon.svg", "robots.txt"],
+      workbox: {
+        cleanupOutdatedCaches: true,
+      },
       manifest: {
         name: "Baca Quran, Hadith, dan Sirah Online",
         short_name: "Quran, Hadith, dan Sirah",
