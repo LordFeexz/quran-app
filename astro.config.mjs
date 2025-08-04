@@ -19,6 +19,7 @@ export default defineConfig({
       includeAssets: ["favicon.svg", "robots.txt"],
       workbox: {
         cleanupOutdatedCaches: true,
+        globPatterns: ["**/*.{html,js,css,woff2,png,svg}"],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === "document",
