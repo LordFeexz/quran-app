@@ -19,6 +19,36 @@ export default defineConfig({
       includeAssets: ["favicon.svg", "robots.txt"],
       workbox: {
         cleanupOutdatedCaches: true,
+        runtimeCaching: [
+          {
+            urlPattern: ({ request }) => request.destination === "document",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "html-cache",
+            },
+          },
+          {
+            urlPattern: ({ request }) =>
+              ["style", "script", "worker"].includes(request.destination),
+            handler: "CacheFirst",
+            options: {
+              cacheName: "asset-cache",
+              expiration: {
+                maxEntries: 50,
+              },
+            },
+          },
+          {
+            urlPattern: ({ request }) => request.destination === "image",
+            handler: "CacheFirst",
+            options: {
+              cacheName: "image-cache",
+              expiration: {
+                maxEntries: 100,
+              },
+            },
+          },
+        ],
       },
       manifest: {
         name: "Baca Quran, Hadith, dan Sirah Online",
