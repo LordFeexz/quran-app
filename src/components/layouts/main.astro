@@ -93,13 +93,5 @@ const {
     </div>
     <Toaster client:only />
     <InstallPwaPrompt client:only />
-    <script is:inline>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("/sw.js")
-          .then(() => console.log("Service Worker registered"))
-          .catch(console.error);
-      }
-    </script>
   </body>
 </html>
