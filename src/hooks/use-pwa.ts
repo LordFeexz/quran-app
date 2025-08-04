@@ -27,6 +27,7 @@ export default function usePwa() {
     if (localStorage.getItem("pwa-install-dismissed") === "true") return;
 
     const handleBeforeInstallPrompt = (e: Event) => {
+      console.log("event install prompt triggered");
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
 
